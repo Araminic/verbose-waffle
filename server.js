@@ -12,13 +12,14 @@ app.listen(3000, function() {
 
   const connectionString = 'mongodb+srv://IAMNicoletta:Cambridge1441@cluster0.ybou3.mongodb.net/scientific-articles?retryWrites=true&w=majority'
   MongoClient.connect(connectionString, { useUnifiedTopology: true })
-  .then(client => {
+  .then(client => { 
     
     const db = client.db('scientific-articles');
 
     app.set('view engine', 'ejs')
     app.use(bodyParser.urlencoded({ extended: true }))
     app.use(express.static('public'))
+    app.use(express.static(__dirname + '/public'));
     app.use(bodyParser.json())
     const articlesCollection = db.collection('articles');
 
@@ -59,6 +60,10 @@ app.listen(3000, function() {
     app.put('/articles', (req, res) => {
         console.log("123",req.body)
       })
+      
+    app.get('/home', (req, res) => {
+      res.redirect('/')
+    })
 
     app.post('/article', (req, res) => {
       var string = encodeURIComponent(req.body.idArticle);

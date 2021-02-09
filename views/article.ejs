@@ -2,32 +2,38 @@
 <html lang="en">
 <head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link href="/assets/style.css" rel="stylesheet" type="text/css">
     <meta charset="UTF-8">
     <title>Articles DB</title>
 </head>
 <body>
-    <form action="/delete"  method="POST" class="form-style-8">
+    <div class="form-style-6">  
+    <form action="/delete"  method="POST" >
         <input type="hidden" class="form-control" id="articleId" name="articleId" value="<%=articleId %>"> 
         <button type="submit" id="delete" class="btn btn-danger btn-xs">Delete Article</button>
     </form>
-    <div class="container">
-        <h2> <%= article[0].info.title %> </h2>
-        <ul class="article">
+    <form action="/home"  method="GET" >
+        <button type="submit" id="delete" class="btn btn-info">Home</button>
+    </form>
+    
+        <h1> <%= article[0].info.title %> </h1>
+        <ul >
         <h5>Author: <%= article[0].info.author %></h5>
         <h5>Editor: <%= article[0].info.editor %> </h5>
         <h5>Journal: <%= article[0].info.journal %> </h5>
         <h5>Year: <%= article[0].info.year %></h5>
         <h5>PubMed Id: <%= article[0].info.pubmedId %></h5>
         <h5>Abstract: <%= article[0].info.abstract %></h5>
+        <h1>Download the Article</h1>
         <form action="/download"  method="POST">
-            <input type="hidden" class="form-control" id="filePath" name="filePath" value="<%=article[0].file.path %>"> 
-            <button type="submit" id="filePath" class="btn btn-primary btn-xs">Download Article</button>
+            <input type="hidden" id="filePath" name="filePath" value="<%=article[0].file.path %>"> 
+            <button type="submit" id="filePath" >Download Article</button>
         </form>
-        <h5>Retrieve more info about this article from PubMed:</h5>
+        <h1>Retrieve more info about this article from PubMed:</h1>
         <form action="/pubMed"  method="POST">
-            <input type="hidden" class="form-control" id="articleId" name="articleId" value="<%=article[0]._id %>"> 
-            <input type="hidden" class="form-control" id="pubmedId" name="pubmedId" value="<%=article[0].info.pubmedId %>"> 
-            <button type="submit" id="pubmedId" class="btn btn-primary btn-xs">PubMed Info</button>
+            <input type="hidden" id="articleId" name="articleId" value="<%=article[0]._id %>"> 
+            <input type="hidden" id="pubmedId" name="pubmedId" value="<%=article[0].info.pubmedId %>"> 
+            <button type="submit" id="pubmedId" >PubMed Info</button>
         </form>
        
         </ul>
