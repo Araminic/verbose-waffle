@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title>Articles DB</title>
+</head>
+<body>
+    
+    <div class="container">
+        
+        <ul class="article">
+            <% info.result.uids.forEach((uid) => {%>
+                <h2> <%= info.result[uid].title %> </h2>
+                Publication Date: <h5> <%= info.result[uid].pubdate %> </h5>
+                Source: <h5> <%= info.result[uid].source %> </h5>
+                Pages: <h5> <%= info.result[uid].pages %> </h5>
+                Full Journal Name: <h5> <%= info.result[uid].fulljournalname %> </h5>
+                Authors: <% info.result[uid].authors.forEach((author) => {%>
+                    <li> <h5> <%= author.name %> </h5></li>
+                    <% }) %>
+    <% }) %>
+        </ul>
+    </div>
+    
+</body>
+</html>
